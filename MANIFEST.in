@@ -1,0 +1,11 @@
+include dash_cisl/dash_cisl.min.js
+include dash_cisl/dash_cisl.min.js.map
+include dash_cisl/async-*.js
+include dash_cisl/async-*.js.map
+include dash_cisl/*-shared.js
+include dash_cisl/*-shared.js.map
+include dash_cisl/metadata.json
+include dash_cisl/package-info.json
+include README.md
+include LICENSE
+include package.json
