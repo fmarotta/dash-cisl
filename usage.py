@@ -8,8 +8,10 @@ app = dash.Dash(__name__)
 app.layout = html.Div([
     dash_cisl.DashCisl(
         id='input',
-        value='my-value',
-        label='my-label'
+        step=1,
+        value=[0, 10],
+        min=0,
+        max=849111,
     ),
     html.Div(id='output')
 ])
@@ -17,7 +19,7 @@ app.layout = html.Div([
 
 @app.callback(Output('output', 'children'), [Input('input', 'value')])
 def display_output(value):
-    return 'You have entered {}'.format(value)
+    return f'You have entered {value[0]}, {value[1]}'
 
 
 if __name__ == '__main__':

@@ -8,7 +8,11 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            value: ''
+            value: [0, 25000],
+            step: 1,
+            digits: 0,
+            min: 0,
+            max: 816421
         };
         this.setProps = this.setProps.bind(this);
     }
@@ -19,7 +23,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{height: "100%"}}>
                 <DashCisl
                     setProps={this.setProps}
                     {...this.state}

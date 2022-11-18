@@ -1,0 +1,74 @@
+.cisl-tick-minor,
+.cisl-tick-major {
+    transform-box: fill-box;
+    transform-origin: bottom center;
+}
+.cisl-break-major {
+    transform-box: fill-box;
+    transform-origin: center;
+    text-anchor: middle;
+    text-align: center;
+    dominant-baseline: central;
+    white-space: nowrap;
+    /*outline: none !important;*/
+    cursor: default;
+}
+.cisl-label {
+    position: fixed;
+    transform-box: fill-box;
+    transform-origin: bottom center;
+    text-align: center;
+    white-space: nowrap;
+    /*outline: none !important;*/
+    cursor: default;
+}
+.cisl-rails {
+    /*outline: none !important;*/
+}
+.cisl-bar {
+    transform-box: fill-box;
+    transform-origin: center;
+    /*outline: none !important;*/
+}
+.cisl-handle {
+    position: absolute;
+    transform-box: fill-box;
+    transform-origin: center;
+    /*outline: none !important;*/
+}
+
+.cisl--style.cisl-tick-minor {
+    height: 1%;
+    width: 0.2%;
+    fill: lightgray;
+}
+.cisl--style.cisl-tick-major {
+    height: 2%;
+    width: 0.4%;
+    fill: lightgray;
+}
+.cisl--style.cisl-break-major {
+    font-family: monospace, monospace;
+}
+.cisl--style.cisl-label {
+    padding: 2px;
+    background-color: transparent;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5px;
+    font-family: monospace, monospace;
+}
+.cisl--style.cisl-rails-border {
+    stroke: darkgray;
+}
+.cisl--style.cisl-rails {
+    stroke: lightgray;
+}
+.cisl--style.cisl-bar {
+    stroke: black;
+}
+.cisl--style.cisl-handle {
+    fill: blue;
+    rx: 1%;
+}
