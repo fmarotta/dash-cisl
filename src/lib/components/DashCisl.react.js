@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './DashCisl.react.css';
 
@@ -64,23 +64,12 @@ export default function Cisl(props) {
         throw Error("Step size too big or not enough breaks; " +
             "you can decrease the range of the slider, increase `step', or decrease `breaks_n.");
     }
+    console.log("Cisl itself");
 
     const {id = uniqueId("cisl-id-")} = props;
     const cislRef = useRef(null);
-    // the viewBox is 100x100 units, centered at 50,50
-    const radius = 175
-
-    // // Respond to resizes
-    // useLayoutEffect(() => {
-    //     const resizeObserver = new ResizeObserver((entries) => {
-    //         if (props.width[props.width.length - 1] === "%") {
-    //             const percentWidth = parseFloat(props.width) / 100;
-    //             const absoluteWidth = percentWidth * entries[0].borderBoxSize[0].inlineSize;
-    //             setWidth(absoluteWidth);
-    //         }
-    //     });
-    //     resizeObserver.observe(document.querySelector(`#${id}`).parentElement);
-    // }, []);
+    const viewBox = '-250 -250 500 500';
+    const radius = 175;
 
     /* Computations
      *
@@ -129,7 +118,7 @@ export default function Cisl(props) {
      * angle at which it lies with respect to the center of the circle.
      */
     function external2angle(x, y) {
-        var bounds = cislRef.current.getBoundingClientRect()
+        var bounds = cislRef.current.getBoundingClientRect();
         var center_x = bounds.left + bounds.width / 2;
         var center_y = bounds.top + bounds.height / 2;
         var angle = Math.PI/2 + Math.atan((y - center_y) / (x - center_x));
@@ -164,6 +153,7 @@ export default function Cisl(props) {
      * not move, except possibly when the viewport is resized.
      */
     function CislFixedParts() {
+        console.log("fixed parts");
         /* Subcomponents
          *
          * These functions create additional elements that are part of the 
@@ -237,21 +227,24 @@ export default function Cisl(props) {
      */
     function CislMovingParts() {
         //const [angleState, setAngleState] = useState([0, Math.PI / 4]);
+        // const [value, setValue] = useState(props.value);
         const angleState = [value2angle(props.value[0]), value2angle(props.value[1])];
         const adjustedState = [adjust_angle(angleState[0]), adjust_angle(angleState[1])];
         const valueState = [angle2value(adjustedState[0]), angle2value(adjustedState[1])];
         const tangentState = [angle2tangent(adjustedState[0]), angle2tangent(adjustedState[1])];
+
+        console.log("moving parts");
+
+        function updateValue(v) {
+            //setValue(v);
+            props.setProps({value: v});
+        }
         
         /* event handlers */
-        var handle_mousedown = (e_down) => {
+        function handle_mousedown(e_down) {
             e_down.persist();
             e_down.preventDefault();
             e_down.target.focus();
-            /*
-            if (typeof this.onStart === "function") {
-                this.onStart()
-            }
-            */
             if (["cisl-rails", "cisl-bar", "cisl-label-from-to"].some((cl) => e_down.target.classList.contains(cl))) {
                 var pageX = e_down.pageX || e_down.touches[0].pageX;
                 var pageY = e_down.pageY || e_down.touches[0].pageY;
@@ -279,25 +272,17 @@ export default function Cisl(props) {
             }
             var new_angle = external2angle(pageX, pageY);
             if (["cisl-handle-to", "cisl-label-to"].some((cl) => e_down.target.classList.contains(cl))) {
-                // setAngleState([adjustedState[0], new_angle]);
-                props.setProps({value: [valueState[0], angle2value(new_angle)]});
+                updateValue([valueState[0], angle2value(new_angle)]);
             } else if (["cisl-handle-from", "cisl-label-from"].some((cl) => e_down.target.classList.contains(cl))) {
-                // setAngleState([new_angle, adjustedState[1]]);
-                props.setProps({value: [angle2value(new_angle), valueState[1]]});
+                updateValue([angle2value(new_angle), valueState[1]]);
             } else if (["cisl-rails", "cisl-bar", "cisl-label-from-to"].some((cl) => e_down.target.classList.contains(cl))) {
-                // setAngleState([new_angle - e_down.cisl_slice_from, new_angle + e_down.cisl_slice_to]);
-                props.setProps({value: [angle2value(new_angle - e_down.cisl_slice_from), angle2value(new_angle + e_down.cisl_slice_to)]});
+                updateValue([angle2value(new_angle - e_down.cisl_slice_from), angle2value(new_angle + e_down.cisl_slice_to)]);
             }
         }
         function handle_mouseup(e_up, move_function) {
             e_up.stopPropagation();
             e_up.stopImmediatePropagation();
             ["mousemove", "touchmove"].forEach((event_type) => window.removeEventListener(event_type, move_function));
-            /*
-            if (typeof this.onFinish === "function") {
-                this.onFinish()
-            }
-            */
         }
         function handle_keydown(e_press) {
             var scale = false; // whether to move (false) or to expand/contract (true)
@@ -332,115 +317,88 @@ export default function Cisl(props) {
             } else {
                 weight *= Math.PI / 50; // advance 1 or 10 percent
             }
-            /*
-            if (typeof this.onStart === "function") {
-                this.onStart()
-            }
-            */
             if (scale) {
                 // setAngleState([adjustedState[0] + weight / 2, adjustedState[1] - weight / 2]);
-                props.setProps({value: [angle2value(adjustedState[0] + weight / 2), angle2value(adjustedState[1] - weight / 2)]});
+                updateValue([angle2value(adjustedState[0] + weight / 2), angle2value(adjustedState[1] - weight / 2)]);
             } else if (["cisl-handle-to", "cisl-label-to"].some((cl) => e_press.target.classList.contains(cl))) {
                 // setAngleState([adjustedState[0], adjustedState[1] + weight]);
-                props.setProps({value: [angle2value(adjustedState[0]), angle2value(adjust_angle(adjustedState[1] + weight))]});
+                updateValue([angle2value(adjustedState[0]), angle2value(adjust_angle(adjustedState[1] + weight))]);
             } else if (["cisl-handle-from", "cisl-label-from"].some((cl) => e_press.target.classList.contains(cl))) {
                 // setAngleState([adjustedState[0] + weight, adjustedState[1]]);
-                props.setProps({value: [angle2value(adjustedState[0] + weight), angle2value(adjustedState[1])]});
+                updateValue([angle2value(adjustedState[0] + weight), angle2value(adjustedState[1])]);
             } else if (["cisl-bar", "cisl-label-from-to"].some((cl) => e_press.target.classList.contains(cl))) {
                 // setAngleState([adjustedState[0] + weight, adjustedState[1] + weight]);
-                props.setProps({value: [angle2value(adjustedState[0] + weight), angle2value(adjustedState[1] + weight)]});
+                updateValue([angle2value(adjustedState[0] + weight), angle2value(adjustedState[1] + weight)]);
             }
-            /*
-            if (typeof this.onFinish === "function") {
-                this.onFinish()
-            }
-            */
         }
         function handle_wheel(e_wheel) {
             var weight = 0.01 * e_wheel.deltaY;
-            /*
-            if (typeof this.onStart === "function") {
-                this.onStart()
-            }
-            */
-            // setAngleState([adjustedState[0] - weight * Math.PI / 50, adjustedState[1] + weight * Math.PI / 50]); // zoom in/out 1 percent
-            props.setProps({value: [angle2value(adjustedState[0] - weight * Math.PI / 50), angle2value(adjustedState[1] + weight * Math.PI / 50)]}); // zoom in/out 1 percent
-            /*
-            if (typeof this.onFinish === "function") {
-                this.onFinish()
-            }
-            */
+            updateValue([angle2value(adjustedState[0] - weight * Math.PI / 50), angle2value(adjustedState[1] + weight * Math.PI / 50)]); // zoom in/out 1 percent
         }
 
-        /**
-         * Components to render the labels.
-         */
-        function Labels() {
-            if (angularDist(adjustedState[0], adjustedState[1]) > Math.PI / 10) {
-                var coord_from = angle2tangent(adjustedState[0], props.labels_altitude);
-                var coord_to = angle2tangent(adjustedState[1], props.labels_altitude);
-                var labels = <>
-                    <foreignObject
-                        x={coord_from[0]}
-                        y={coord_from[1]}
-                        style={{width: '1', height: '1', overflow: 'visible'}}
-                    >
-                        <span
-                            className='cisl-label cisl-label-from cisl--style'
-                            tabIndex='0'
-                            style={{transform: 'translate(-50%,-100%) rotate('+adjustedState[0]+'rad)'}}
-                            onMouseDown={handle_mousedown}
-                            onTouchStart={handle_mousedown}
-                            onKeyDown={handle_keydown}
-                            onWheel={handle_wheel}>
-                            {props.prefix + format_label(valueState[0]) + props.postfix}
-                        </span>
-                    </foreignObject>
-                    <foreignObject
-                        x={coord_to[0]}
-                        y={coord_to[1]}
-                        style={{width: '1', height: '1', overflow: 'visible'}}
-                    >
-                        <span
-                            className='cisl-label cisl-label-to cisl--style'
-                            tabIndex='0'
-                            style={{transform: 'translate(-50%,-100%) rotate('+adjustedState[1]+'rad)'}}
-                            onMouseDown={handle_mousedown}
-                            onTouchStart={handle_mousedown}
-                            onKeyDown={handle_keydown}
-                            onWheel={handle_wheel}>
-                            {props.prefix + format_label(valueState[1]) + props.postfix}
-                        </span>
-                    </foreignObject>
-                  </>;
-            } else {
-                var angle_from_to = adjustedState[0] + arcLength(adjustedState[0], adjustedState[1]) / 2;
-                var coord_from_to = angle2tangent(angle_from_to, props.labels_altitude);
-                var labels = 
-                    <foreignObject
-                        x={coord_from_to[0]}
-                        y={coord_from_to[1]}
-                        style={{width: '1', height: '1', overflow: 'visible'}}
-                    >
-                        <span
-                            className='cisl-label cisl-label-from-to cisl--style'
-                            tabIndex='0'
-                            style={{transform: 'translate(-50%,-100%) rotate('+angle_from_to+'rad)'}}
-                            onMouseDown={handle_mousedown}
-                            onTouchStart={handle_mousedown}
-                            onKeyDown={handle_keydown}
-                            onWheel={handle_wheel}>
-                            {props.prefix + format_label(valueState[0]) + props.values_sep + format_label(valueState[1]) + props.postfix}
-                        </span>
-                    </foreignObject>;
-            }
-
-            return(labels);
+        // Labels
+        if (angularDist(adjustedState[0], adjustedState[1]) > Math.PI / 10) {
+            var coord_from = angle2tangent(adjustedState[0], props.labels_altitude);
+            var coord_to = angle2tangent(adjustedState[1], props.labels_altitude);
+            var labels = <>
+                <foreignObject
+                    x={coord_from[0]}
+                    y={coord_from[1]}
+                    style={{width: '1', height: '1', overflow: 'visible'}}
+                >
+                    <span
+                        className='cisl-label cisl-label-from cisl--style'
+                        tabIndex='0'
+                        style={{transform: 'translate(-50%,-100%) rotate('+adjustedState[0]+'rad)'}}
+                        onMouseDown={handle_mousedown}
+                        onTouchStart={handle_mousedown}
+                        onKeyDown={handle_keydown}
+                        onWheel={handle_wheel}>
+                        {props.prefix + format_label(valueState[0]) + props.postfix}
+                    </span>
+                </foreignObject>
+                <foreignObject
+                    x={coord_to[0]}
+                    y={coord_to[1]}
+                    style={{width: '1', height: '1', overflow: 'visible'}}
+                >
+                    <span
+                        className='cisl-label cisl-label-to cisl--style'
+                        tabIndex='0'
+                        style={{transform: 'translate(-50%,-100%) rotate('+adjustedState[1]+'rad)'}}
+                        onMouseDown={handle_mousedown}
+                        onTouchStart={handle_mousedown}
+                        onKeyDown={handle_keydown}
+                        onWheel={handle_wheel}>
+                        {props.prefix + format_label(valueState[1]) + props.postfix}
+                    </span>
+                </foreignObject>
+              </>;
+        } else {
+            var angle_from_to = adjustedState[0] + arcLength(adjustedState[0], adjustedState[1]) / 2;
+            var coord_from_to = angle2tangent(angle_from_to, props.labels_altitude);
+            var labels = 
+                <foreignObject
+                    x={coord_from_to[0]}
+                    y={coord_from_to[1]}
+                    style={{width: '1', height: '1', overflow: 'visible'}}
+                >
+                    <span
+                        className='cisl-label cisl-label-from-to cisl--style'
+                        tabIndex='0'
+                        style={{transform: 'translate(-50%,-100%) rotate('+angle_from_to+'rad)'}}
+                        onMouseDown={handle_mousedown}
+                        onTouchStart={handle_mousedown}
+                        onKeyDown={handle_keydown}
+                        onWheel={handle_wheel}>
+                        {props.prefix + format_label(valueState[0]) + props.values_sep + format_label(valueState[1]) + props.postfix}
+                    </span>
+                </foreignObject>;
         }
 
         return(
           <>
-            <Labels />
+            {labels}
             <path className='cisl-bar cisl--style' fill='transparent' tabIndex='0' strokeWidth={props.rails_width} d={'M ' + tangentState[0][0] + ' ' + tangentState[0][1] + ' ' +
               'A ' + radius + ' ' + radius + ' ' +
               '0 ' + (arcLength(adjustedState[0], adjustedState[1]) <= Math.PI ? '0 ' : '1 ') + '1 ' +
@@ -457,9 +415,9 @@ export default function Cisl(props) {
     }
 
     return(
-      <svg id={id} ref={cislRef} viewBox='-250 -250 500 500' className='cisl-container'>
-        <CislFixedParts />
-        <CislMovingParts />
+      <svg id={id} ref={cislRef} viewBox={viewBox} className='cisl-container'>
+        {CislFixedParts()}
+        {CislMovingParts()}
       </svg>
     );
 }

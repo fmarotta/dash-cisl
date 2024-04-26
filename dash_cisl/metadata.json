@@ -1,7 +1,7 @@
 {
   "src/lib/components/DashCisl.react.js": {
-    "description": "ExampleComponent is an example component.\nIt takes a property, `label`, and\ndisplays it.\nIt renders an input with the property `value`\nwhich is editable by the user.",
-    "displayName": "DashCisl",
+    "description": "Cisl\n\nA circular slider component. Features and customisation are somewhat limited\nto what I need for my work. It has two handles which can be moved either\nindependently or at the same time (to shift the whole range). Handes can also\nbe moved with arrow keys, WASD keys, or the mouse wheel.",
+    "displayName": "Cisl",
     "methods": [],
     "props": {
       "id": {
@@ -9,21 +9,150 @@
           "name": "string"
         },
         "required": false,
-        "description": "The ID used to identify this component in Dash callbacks."
+        "description": "The id of the circular slider."
       },
-      "label": {
+      "min": {
         "type": {
-          "name": "string"
+          "name": "number"
         },
-        "required": true,
-        "description": "A label that will be printed when this component is rendered."
+        "required": false,
+        "description": "Minimum value taken by the slider.",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
       },
-      "value": {
+      "max": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Maximum value taken by the slider.",
+        "defaultValue": {
+          "value": "100",
+          "computed": false
+        }
+      },
+      "step": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The initial value of the 'from' handle.",
+        "defaultValue": {
+          "value": "0",
+          "computed": false
+        }
+      },
+      "breaks_n": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The total number of breaks in the 'ruler'.",
+        "defaultValue": {
+          "value": "50",
+          "computed": false
+        }
+      },
+      "major_breaks_every": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Put a major break every ... breaks.",
+        "defaultValue": {
+          "value": "5",
+          "computed": false
+        }
+      },
+      "rails_width": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The width of the rails.",
+        "defaultValue": {
+          "value": "10",
+          "computed": false
+        }
+      },
+      "rails_border_width": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The thickness of the border of the rails.",
+        "defaultValue": {
+          "value": "2",
+          "computed": false
+        }
+      },
+      "breaks_altitude": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The height of the breaks.",
+        "defaultValue": {
+          "value": "30",
+          "computed": false
+        }
+      },
+      "labels_altitude": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The height of the labels.",
+        "defaultValue": {
+          "value": "12",
+          "computed": false
+        }
+      },
+      "digits": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The number of digits in the labels.",
+        "defaultValue": {
+          "value": "2",
+          "computed": false
+        }
+      },
+      "prefix": {
         "type": {
           "name": "string"
         },
         "required": false,
-        "description": "The value displayed in the input."
+        "description": "The prefix for the labels.",
+        "defaultValue": {
+          "value": "''",
+          "computed": false
+        }
+      },
+      "postfix": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The postfix for the labels.",
+        "defaultValue": {
+          "value": "''",
+          "computed": false
+        }
+      },
+      "values_sep": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The separator for the labels.",
+        "defaultValue": {
+          "value": "':'",
+          "computed": false
+        }
       },
       "setProps": {
         "type": {
@@ -31,6 +160,20 @@
         },
         "required": false,
         "description": "Dash-assigned callback that should be called to report property changes\nto Dash, to make them available for callbacks."
+      },
+      "value": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "number"
+          }
+        },
+        "required": false,
+        "description": "Internal state, used by Dash.",
+        "defaultValue": {
+          "value": "[0, 25]",
+          "computed": false
+        }
       }
     }
   }

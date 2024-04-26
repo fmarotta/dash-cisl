@@ -1,6 +1,6 @@
 Package: dashCisl
 Title: A circular slider with two handles.
-Version: 0.0.1
+Version: 0.0.3
 Description: A circular slider with two handles.
 Depends: R (>= 3.0.2)
 Imports: 

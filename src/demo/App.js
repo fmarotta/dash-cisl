@@ -12,7 +12,8 @@ class App extends Component {
             step: 1,
             digits: 0,
             min: 0,
-            max: 816421
+            max: 816421,
+            digits: 0
         };
         this.setProps = this.setProps.bind(this);
     }
@@ -23,12 +24,10 @@ class App extends Component {
 
     render() {
         return (
-            <div style={{height: "100%"}}>
                 <DashCisl
                     setProps={this.setProps}
                     {...this.state}
                 />
-            </div>
         )
     }
 }

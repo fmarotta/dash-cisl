@@ -2,7 +2,7 @@
 name = "DashCisl"
 uuid = "1b08a953-4be3-4667-9a23-20ac9d67333e"
 authors = ["Federico Marotta <federico.marotta96@gmail.com>"]
-version = "0.0.1"
+version = "0.0.3"
 
 [deps]
 Dash = "1b08a953-4be3-4667-9a23-3db579824955"
