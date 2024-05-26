@@ -11,7 +11,8 @@ app.layout = html.Div([
         step=1,
         value=[0, 10],
         min=0,
-        max=849111,
+        max=350,
+        digits=0,
     ),
     html.Div(id='output')
 ])

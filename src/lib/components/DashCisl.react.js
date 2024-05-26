@@ -64,7 +64,7 @@ export default function Cisl(props) {
         throw Error("Step size too big or not enough breaks; " +
             "you can decrease the range of the slider, increase `step', or decrease `breaks_n.");
     }
-    console.log("Cisl itself");
+    // console.log("Cisl itself");
 
     const {id = uniqueId("cisl-id-")} = props;
     const cislRef = useRef(null);
@@ -153,7 +153,7 @@ export default function Cisl(props) {
      * not move, except possibly when the viewport is resized.
      */
     function CislFixedParts() {
-        console.log("fixed parts");
+        // console.log("fixed parts");
         /* Subcomponents
          *
          * These functions create additional elements that are part of the 
@@ -233,7 +233,7 @@ export default function Cisl(props) {
         const valueState = [angle2value(adjustedState[0]), angle2value(adjustedState[1])];
         const tangentState = [angle2tangent(adjustedState[0]), angle2tangent(adjustedState[1])];
 
-        console.log("moving parts");
+        // console.log("moving parts");
 
         function updateValue(v) {
             //setValue(v);

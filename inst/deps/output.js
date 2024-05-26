@@ -14,7 +14,7 @@ window["dash_cisl"] =
 /******/ 	function hotDownloadUpdateChunk(chunkId) {
 /******/ 		var script = document.createElement("script");
 /******/ 		script.charset = "utf-8";
-/******/ 		script.src = __webpack_require__.p + "5aa5c4c-" + chunkId + "-wps-hmr.js";
+/******/ 		script.src = __webpack_require__.p + "e557e08-" + chunkId + "-wps-hmr.js";
 /******/ 		if (null) script.crossOrigin = null;
 /******/ 		document.head.appendChild(script);
 /******/ 	}
@@ -28,7 +28,7 @@ window["dash_cisl"] =
 /******/ 			}
 /******/ 			try {
 /******/ 				var request = new XMLHttpRequest();
-/******/ 				var requestPath = __webpack_require__.p + "5aa5c4c-wps-hmr.json";
+/******/ 				var requestPath = __webpack_require__.p + "e557e08-wps-hmr.json";
 /******/ 				request.open("GET", requestPath, true);
 /******/ 				request.timeout = requestTimeout;
 /******/ 				request.send(null);
@@ -64,7 +64,7 @@ window["dash_cisl"] =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "159e81cfc074f8374e36";
+/******/ 	var hotCurrentHash = "f9a9664a467696898e31";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -836,7 +836,7 @@ window["dash_cisl"] =
 /******/ 	        var srcFragments = src.split('/');
 /******/ 	        var fileFragments = srcFragments.slice(-1)[0].split('.');
 /******/
-/******/ 	        fileFragments.splice(1, 0, "v0_0_3m1669055903");
+/******/ 	        fileFragments.splice(1, 0, "v0_0_3m1716722413");
 /******/ 	        srcFragments.splice(-1, 1, fileFragments.join('.'))
 /******/
 /******/ 	        return srcFragments.join('/');
@@ -30900,7 +30900,7 @@ module.exports = function (css) {
   let hash = '<unknown>';
   let options;
   try {
-    options = {"compress":null,"historyFallback":false,"hmr":true,"host":null,"liveReload":false,"log":{"level":"info","prefix":{"template":"{{level}}"},"name":"webpack-plugin-serve"},"open":true,"port":55555,"progress":true,"secure":false,"static":["/home/fmarotta/Projects/dash-cisl"],"status":true,"address":"[::]:55555","compilerName":null,"wpsId":"5aa5c4c"};
+    options = {"compress":null,"historyFallback":false,"hmr":true,"host":null,"liveReload":false,"log":{"level":"info","prefix":{"template":"{{level}}"},"name":"webpack-plugin-serve"},"open":true,"port":55555,"progress":true,"secure":false,"static":["/home/fmarotta/Projects/dash-cisl"],"status":true,"address":"[::]:55555","compilerName":null,"wpsId":"e557e08"};
   } catch (e) {
     const { log } = __webpack_require__(/*! ./lib/client/log */ "./node_modules/webpack-plugin-serve/lib/client/log.js");
     log.error(
@@ -32158,18 +32158,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _DashCisl_react_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DashCisl.react.css */ "./src/lib/components/DashCisl.react.css");
 /* harmony import */ var _DashCisl_react_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_DashCisl_react_css__WEBPACK_IMPORTED_MODULE_2__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -32236,6 +32224,7 @@ function Cisl(props) {
     throw Error("Step size too big or not enough breaks; " + "you can decrease the range of the slider, increase `step', or decrease `breaks_n.");
   }
 
+  console.log("Cisl itself");
   var _props$id = props.id,
       id = _props$id === void 0 ? uniqueId("cisl-id-") : _props$id;
   var cislRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
@@ -32333,12 +32322,14 @@ function Cisl(props) {
 
 
   function CislFixedParts() {
+    console.log("fixed parts");
     /* Subcomponents
      *
      * These functions create additional elements that are part of the 
      * circular slider. These elements have a defined structure, but can 
      * be parametrised.
      */
+
     function Tick(x, y, angle, cl, key) {
       angle += Math.PI;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("rect", {
@@ -32419,24 +32410,18 @@ function Cisl(props) {
    */
 
 
-  function CislMovingParts(setProps) {
+  function CislMovingParts() {
     //const [angleState, setAngleState] = useState([0, Math.PI / 4]);
-    var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.value),
-        _useState2 = _slicedToArray(_useState, 2),
-        value = _useState2[0],
-        setValue = _useState2[1];
-
-    var angleState = [value2angle(value[0]), value2angle(value[1])];
+    // const [value, setValue] = useState(props.value);
+    var angleState = [value2angle(props.value[0]), value2angle(props.value[1])];
     var adjustedState = [adjust_angle(angleState[0]), adjust_angle(angleState[1])];
     var valueState = [angle2value(adjustedState[0]), angle2value(adjustedState[1])];
     var tangentState = [angle2tangent(adjustedState[0]), angle2tangent(adjustedState[1])];
-    console.log(setProps);
+    console.log("moving parts");
 
     function updateValue(v) {
-      console.log('setting value');
-      console.log(v);
-      setValue(v);
-      setProps({
+      //setValue(v);
+      props.setProps({
         value: v
       });
     }
@@ -32588,81 +32573,74 @@ function Cisl(props) {
     function handle_wheel(e_wheel) {
       var weight = 0.01 * e_wheel.deltaY;
       updateValue([angle2value(adjustedState[0] - weight * Math.PI / 50), angle2value(adjustedState[1] + weight * Math.PI / 50)]); // zoom in/out 1 percent
-    }
-    /**
-     * Components to render the labels.
-     */
+    } // Labels
 
 
-    function Labels() {
-      if (angularDist(adjustedState[0], adjustedState[1]) > Math.PI / 10) {
-        var coord_from = angle2tangent(adjustedState[0], props.labels_altitude);
-        var coord_to = angle2tangent(adjustedState[1], props.labels_altitude);
-        var labels = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("foreignObject", {
-          x: coord_from[0],
-          y: coord_from[1],
-          style: {
-            width: '1',
-            height: '1',
-            overflow: 'visible'
-          }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "cisl-label cisl-label-from cisl--style",
-          tabIndex: "0",
-          style: {
-            transform: 'translate(-50%,-100%) rotate(' + adjustedState[0] + 'rad)'
-          },
-          onMouseDown: handle_mousedown,
-          onTouchStart: handle_mousedown,
-          onKeyDown: handle_keydown,
-          onWheel: handle_wheel
-        }, props.prefix + format_label(valueState[0]) + props.postfix)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("foreignObject", {
-          x: coord_to[0],
-          y: coord_to[1],
-          style: {
-            width: '1',
-            height: '1',
-            overflow: 'visible'
-          }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "cisl-label cisl-label-to cisl--style",
-          tabIndex: "0",
-          style: {
-            transform: 'translate(-50%,-100%) rotate(' + adjustedState[1] + 'rad)'
-          },
-          onMouseDown: handle_mousedown,
-          onTouchStart: handle_mousedown,
-          onKeyDown: handle_keydown,
-          onWheel: handle_wheel
-        }, props.prefix + format_label(valueState[1]) + props.postfix)));
-      } else {
-        var angle_from_to = adjustedState[0] + arcLength(adjustedState[0], adjustedState[1]) / 2;
-        var coord_from_to = angle2tangent(angle_from_to, props.labels_altitude);
-        var labels = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("foreignObject", {
-          x: coord_from_to[0],
-          y: coord_from_to[1],
-          style: {
-            width: '1',
-            height: '1',
-            overflow: 'visible'
-          }
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "cisl-label cisl-label-from-to cisl--style",
-          tabIndex: "0",
-          style: {
-            transform: 'translate(-50%,-100%) rotate(' + angle_from_to + 'rad)'
-          },
-          onMouseDown: handle_mousedown,
-          onTouchStart: handle_mousedown,
-          onKeyDown: handle_keydown,
-          onWheel: handle_wheel
-        }, props.prefix + format_label(valueState[0]) + props.values_sep + format_label(valueState[1]) + props.postfix));
-      }
-
-      return labels;
+    if (angularDist(adjustedState[0], adjustedState[1]) > Math.PI / 10) {
+      var coord_from = angle2tangent(adjustedState[0], props.labels_altitude);
+      var coord_to = angle2tangent(adjustedState[1], props.labels_altitude);
+      var labels = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("foreignObject", {
+        x: coord_from[0],
+        y: coord_from[1],
+        style: {
+          width: '1',
+          height: '1',
+          overflow: 'visible'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "cisl-label cisl-label-from cisl--style",
+        tabIndex: "0",
+        style: {
+          transform: 'translate(-50%,-100%) rotate(' + adjustedState[0] + 'rad)'
+        },
+        onMouseDown: handle_mousedown,
+        onTouchStart: handle_mousedown,
+        onKeyDown: handle_keydown,
+        onWheel: handle_wheel
+      }, props.prefix + format_label(valueState[0]) + props.postfix)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("foreignObject", {
+        x: coord_to[0],
+        y: coord_to[1],
+        style: {
+          width: '1',
+          height: '1',
+          overflow: 'visible'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "cisl-label cisl-label-to cisl--style",
+        tabIndex: "0",
+        style: {
+          transform: 'translate(-50%,-100%) rotate(' + adjustedState[1] + 'rad)'
+        },
+        onMouseDown: handle_mousedown,
+        onTouchStart: handle_mousedown,
+        onKeyDown: handle_keydown,
+        onWheel: handle_wheel
+      }, props.prefix + format_label(valueState[1]) + props.postfix)));
+    } else {
+      var angle_from_to = adjustedState[0] + arcLength(adjustedState[0], adjustedState[1]) / 2;
+      var coord_from_to = angle2tangent(angle_from_to, props.labels_altitude);
+      var labels = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("foreignObject", {
+        x: coord_from_to[0],
+        y: coord_from_to[1],
+        style: {
+          width: '1',
+          height: '1',
+          overflow: 'visible'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "cisl-label cisl-label-from-to cisl--style",
+        tabIndex: "0",
+        style: {
+          transform: 'translate(-50%,-100%) rotate(' + angle_from_to + 'rad)'
+        },
+        onMouseDown: handle_mousedown,
+        onTouchStart: handle_mousedown,
+        onKeyDown: handle_keydown,
+        onWheel: handle_wheel
+      }, props.prefix + format_label(valueState[0]) + props.values_sep + format_label(valueState[1]) + props.postfix));
     }
 
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Labels, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, labels, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
       className: "cisl-bar cisl--style",
       fill: "transparent",
       tabIndex: "0",
@@ -32709,7 +32687,7 @@ function Cisl(props) {
     ref: cislRef,
     viewBox: viewBox,
     className: "cisl-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CislFixedParts, null), CislMovingParts(props.setProps));
+  }, CislFixedParts(), CislMovingParts());
 }
 /*
  * Send the new value to the parent component.
