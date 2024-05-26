@@ -9,6 +9,29 @@ Get started with:
 2. Run `python usage.py`
 3. Visit http://localhost:8050 in your web browser
 
+## Props and style
+
+The component supports the following properties.
+
+* `id`: The id of the circular slider.
+* `min`: Minimum value taken by the slider.
+* `max`: Maximum value taken by the slider.
+* `step`: The initial value of the 'from' handle.
+* `breaks_n`: The total number of breaks in the 'ruler'.
+* `major_breaks_every`: Put a major break every ... breaks.
+* `rails_width`: The width of the rails.
+* `rails_border_width`: The thickness of the border of the rails.
+* `breaks_altitude`: The height of the breaks.
+* `labels_altitude`: The height of the labels.
+* `digits`: The number of digits after the comma in the labels (set to 0 to get whole numbers).
+* `prefix`: The prefix for the labels.
+* `postfix`: The postfix for the labels.
+* `values_sep`: The separator for the labels.
+* `value`: The value of the slider, used internally (do not set this prop!)
+
+The slider is rendered as an SVG element but most parts have a class attribute that can be used to change the style through CSS.
+Please use the [default CSS](src/lib/components/DashCisl.react.css) as a starting point.
+
 ## Contributing
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md)
