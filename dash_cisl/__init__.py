@@ -67,14 +67,12 @@ _js_dist.extend(
     [
         {
             'relative_package_path': 'dash_cisl.min.js',
-    'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js'.format(
-                package_name, __name__, __version__),
+    
             'namespace': package_name
         },
         {
             'relative_package_path': 'dash_cisl.min.js.map',
-    'external_url': 'https://unpkg.com/{0}@{2}/{1}/{1}.min.js.map'.format(
-                package_name, __name__, __version__),
+    
             'namespace': package_name,
             'dynamic': True
         }

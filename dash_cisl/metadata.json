@@ -1,7 +1,7 @@
 {
   "src/lib/components/DashCisl.react.js": {
     "description": "Cisl\n\nA circular slider component. Features and customisation are somewhat limited\nto what I need for my work. It has two handles which can be moved either\nindependently or at the same time (to shift the whole range). Handes can also\nbe moved with arrow keys, WASD keys, or the mouse wheel.",
-    "displayName": "Cisl",
+    "displayName": "DashCisl",
     "methods": [],
     "props": {
       "id": {
@@ -95,7 +95,7 @@
         "required": false,
         "description": "The height of the breaks.",
         "defaultValue": {
-          "value": "30",
+          "value": "25",
           "computed": false
         }
       },
@@ -106,7 +106,7 @@
         "required": false,
         "description": "The height of the labels.",
         "defaultValue": {
-          "value": "12",
+          "value": "25",
           "computed": false
         }
       },
@@ -128,7 +128,7 @@
         "required": false,
         "description": "The prefix for the labels.",
         "defaultValue": {
-          "value": "''",
+          "value": "\"\"",
           "computed": false
         }
       },
@@ -139,7 +139,7 @@
         "required": false,
         "description": "The postfix for the labels.",
         "defaultValue": {
-          "value": "''",
+          "value": "\"\"",
           "computed": false
         }
       },
@@ -150,7 +150,7 @@
         "required": false,
         "description": "The separator for the labels.",
         "defaultValue": {
-          "value": "':'",
+          "value": "\":\"",
           "computed": false
         }
       },

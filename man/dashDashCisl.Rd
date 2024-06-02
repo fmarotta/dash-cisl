@@ -1,7 +1,7 @@
 % Auto-generated: do not edit by hand
-\name{dashCisl}
+\name{dashDashCisl}
 
-\alias{dashCisl}
+\alias{dashDashCisl}
 
 \title{DashCisl component}
 
@@ -10,7 +10,7 @@ Cisl  A circular slider component. Features and customisation are somewhat limit
 }
 
 \usage{
-dashCisl(id=NULL, breaks_altitude=NULL, breaks_n=NULL, digits=NULL,
+dashDashCisl(id=NULL, breaks_altitude=NULL, breaks_n=NULL, digits=NULL,
 labels_altitude=NULL, major_breaks_every=NULL, max=NULL,
 min=NULL, postfix=NULL, prefix=NULL,
 rails_border_width=NULL, rails_width=NULL, step=NULL,

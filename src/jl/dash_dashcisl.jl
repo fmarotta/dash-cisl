@@ -1,9 +1,9 @@
 # AUTO GENERATED FILE - DO NOT EDIT
 
-export dashcisl
+export dash_dashcisl
 
 """
-    dashcisl(;kwargs...)
+    dash_dashcisl(;kwargs...)
 
 A DashCisl component.
 Cisl
@@ -29,9 +29,9 @@ Keyword arguments:
 - `value` (Array of Reals; optional): Internal state, used by Dash.
 - `values_sep` (String; optional): The separator for the labels.
 """
-function dashcisl(; kwargs...)
+function dash_dashcisl(; kwargs...)
         available_props = Symbol[:id, :breaks_altitude, :breaks_n, :digits, :labels_altitude, :major_breaks_every, :max, :min, :postfix, :prefix, :rails_border_width, :rails_width, :step, :value, :values_sep]
         wild_props = Symbol[]
-        return Component("dashcisl", "DashCisl", "dash_cisl", available_props, wild_props; kwargs...)
+        return Component("dash_dashcisl", "DashCisl", "dash_cisl", available_props, wild_props; kwargs...)
 end
 

@@ -1,13 +1,13 @@
 Package: dashCisl
-Title: A circular slider with two handles.
-Version: 0.0.3
-Description: A circular slider with two handles.
+Title: A circular slider for Dash
+Version: 0.0.1
+Description: A circular slider for Dash
 Depends: R (>= 3.0.2)
 Imports: 
 Suggests: 
 License: MIT + file LICENSE
-URL: 
-BugReports: 
+URL: https://github.com/fmarotta/dash-cisl
+BugReports: https://github.com/fmarotta/dash-cisl/issues
 Encoding: UTF-8
 LazyData: true
 KeepSource: true

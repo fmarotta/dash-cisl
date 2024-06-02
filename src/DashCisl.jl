@@ -3,9 +3,9 @@ module DashCisl
 using Dash
 
 const resources_path = realpath(joinpath( @__DIR__, "..", "deps"))
-const version = "0.0.3"
+const version = "0.0.1"
 
-include("jl/dashcisl.jl")
+include("jl/dash_dashcisl.jl")
 
 function __init__()
     DashBase.register_package(
@@ -16,14 +16,14 @@ function __init__()
             [
                 DashBase.Resource(
     relative_package_path = "dash_cisl.min.js",
-    external_url = "https://unpkg.com/dash_cisl@0.0.3/dash_cisl/dash_cisl.min.js",
+    external_url = nothing,
     dynamic = nothing,
     async = nothing,
     type = :js
 ),
 DashBase.Resource(
     relative_package_path = "dash_cisl.min.js.map",
-    external_url = "https://unpkg.com/dash_cisl@0.0.3/dash_cisl/dash_cisl.min.js.map",
+    external_url = nothing,
     dynamic = true,
     async = nothing,
     type = :js

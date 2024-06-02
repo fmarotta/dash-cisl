@@ -1,40 +1,14 @@
-.cisl-tick-minor,
-.cisl-tick-major {
-    transform-box: fill-box;
-    transform-origin: bottom center;
-}
-.cisl-break-major {
-    transform-box: fill-box;
+.cisl-text {
+    transform-box: border-box;
     transform-origin: center;
     text-anchor: middle;
     text-align: center;
     dominant-baseline: central;
     white-space: nowrap;
-    /*outline: none !important;*/
     cursor: default;
-}
-.cisl-label {
-    position: fixed;
-    transform-box: fill-box;
-    transform-origin: bottom center;
-    text-align: center;
-    white-space: nowrap;
-    /*outline: none !important;*/
-    cursor: default;
-}
-.cisl-rails {
-    /*outline: none !important;*/
-}
-.cisl-bar {
-    transform-box: fill-box;
-    transform-origin: center;
-    /*outline: none !important;*/
-}
-.cisl-handle {
-    position: absolute;
-    transform-box: fill-box;
-    transform-origin: center;
-    /*outline: none !important;*/
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .cisl--style.cisl-tick-minor {
@@ -51,11 +25,10 @@
     font-family: monospace, monospace;
 }
 .cisl--style.cisl-label {
+    outline: none;
     padding: 2px;
     background-color: transparent;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
+    border: 1px solid black;
     border-radius: 5px;
     font-family: monospace, monospace;
 }

@@ -17,7 +17,7 @@ Keyword arguments:
 - id (string; optional):
     The id of the circular slider.
 
-- breaks_altitude (number; default 30):
+- breaks_altitude (number; default 25):
     The height of the breaks.
 
 - breaks_n (number; default 50):
@@ -26,7 +26,7 @@ Keyword arguments:
 - digits (number; default 2):
     The number of digits in the labels.
 
-- labels_altitude (number; default 12):
+- labels_altitude (number; default 25):
     The height of the labels.
 
 - major_breaks_every (number; default 5):
@@ -38,10 +38,10 @@ Keyword arguments:
 - min (number; default 0):
     Minimum value taken by the slider.
 
-- postfix (string; default ''):
+- postfix (string; default ""):
     The postfix for the labels.
 
-- prefix (string; default ''):
+- prefix (string; default ""):
     The prefix for the labels.
 
 - rails_border_width (number; default 2):
@@ -56,7 +56,7 @@ Keyword arguments:
 - value (list of numbers; default [0, 25]):
     Internal state, used by Dash.
 
-- values_sep (string; default ':'):
+- values_sep (string; default ":"):
     The separator for the labels."""
     _children_props = []
     _base_nodes = ['children']
