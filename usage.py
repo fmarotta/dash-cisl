@@ -6,6 +6,11 @@ app = Dash(__name__)
 app.layout = html.Div([
     dash_cisl.DashCisl(
         id='input',
+        value=[0, 10],
+        min=0,
+        max=100,
+        step=1,
+        digits=0,
     ),
     html.Div(id='output')
 ])
