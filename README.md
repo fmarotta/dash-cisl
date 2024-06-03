@@ -1,6 +1,6 @@
 # Dash Circular Slider
 
-![](screencast_usage.gif)
+![](screencast_usage.webp)
 
 Dash Circular Slider is a Dash component library.
 
