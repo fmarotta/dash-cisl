@@ -40,7 +40,7 @@ function angle2value(angle, min, max, step) {
  * within the acceptable range first.
  */
 function value2angle(value, min, max, step) {
-  const angle = (CIRCLE * (sanitize_value(value, min, max, step) - min)) / (max - min);
+  const angle = CIRCLE * (sanitize_value(value, min, max, step) - min) / (max - min);
   return Math.mod(angle, CIRCLE);
 }
 
@@ -62,12 +62,7 @@ function sanitize_angle(angle, min, max, step) {
  * the value respects the step.
  */
 function sanitize_value(value, min, max, step) {
-  while (value < min) {
-    value = max - (min - value);
-  }
-  if (value > max) {
-    value %= max;
-  }
+  value = Math.mod(value - min, max - min) + min;
   if (!step) {
     return value;
   }
@@ -161,7 +156,9 @@ let uniqueId = (function () {
  */
 export default function DashCisl(props) {
   // Validate step size
-  if (props.step && (props.max - props.min) / props.step < 3) {
+  if (props.max <= props.min) {
+    throw Error("Invalid range. Please make sure that min < max.");
+  } else if (props.step && (props.max - props.min) / props.step < 3) {
     throw Error(
       "Not enough steps: at least three are required; " +
         "either increase the range of the slider or decrease the step size.",
@@ -182,11 +179,11 @@ export default function DashCisl(props) {
 
   useEffect(() => {
     /* The `wheel` event is *passive* by default. This means that
-           preventDefault() is useless and the page will be scrolled
-           anyway. We want to avoid scrolling the page, so the event must
-           be active. However, react doesn't allow us to do so. F! We have
-           to add the event listener with addEventListener().
-           https://github.com/facebook/react/issues/14856 */
+       preventDefault() is useless and the page will be scrolled
+       anyway. We want to avoid scrolling the page, so the event must
+       be active. However, react doesn't allow us to do so. F! We have
+       to add the event listener with addEventListener().
+       https://github.com/facebook/react/issues/14856 */
     if (svg && svg.current) {
       svg.current.addEventListener(
         "wheel",
